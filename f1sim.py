@@ -3,6 +3,8 @@ from decimal import Decimal
 import math
 import configparser
 import statistics
+from matplotlib import pyplot
+import numpy
 
 Config = configparser.ConfigParser()
 Config.read('config.txt')
@@ -356,3 +358,9 @@ f.write('hamilton median:' + str(statistics.median(hamlist)) + '\n')
 f.write('hamilton std. dev:' + str(statistics.stdev(hamlist)) + '\n')
 
 f.close()
+
+bins = numpy.linspace(330, 399, 18)
+pyplot.hist(roslist, bins, alpha=0.5, label='rosberg')
+pyplot.hist(hamlist, bins, alpha=0.5, label='hamilton')
+pyplot.legend(loc='upper right')
+pyplot.show()
